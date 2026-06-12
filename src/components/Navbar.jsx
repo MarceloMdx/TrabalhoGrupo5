@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark px-3">
@@ -7,17 +9,17 @@ function Navbar() {
         </span>
 
         <div className="navbar-nav">
-          <a className="nav-link" href="#">
+          <Link className="nav-link" to="./FormAvistamento.jsx">
             Avistamentos
-          </a>
+          </Link>
 
-          <a className="nav-link" href="#">
+          <Link className="nav-link" to="./FormAlien.jsx">
             Aliens
-          </a>
+          </Link>
 
-          <a className="nav-link" href="#">
+          <Link className="nav-link" to="./FormPlaneta.jsx">
             Planetas
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
