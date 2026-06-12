@@ -1,19 +1,7 @@
-
-import './App.css'
-import './components/Navbar'
-import Navbar from './components/Navbar';
+import Loading from "./components/Loading";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-
-      <div className="container-page">
-        <h1>👽 Diário de Avistamentos ET</h1>
-      </div>
-    </>
-
-  );
+  return <Loading />;
 }
 
 export default App;

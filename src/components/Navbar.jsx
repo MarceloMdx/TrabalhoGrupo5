@@ -8,7 +8,13 @@ function Navbar() {
           👽 Diário ET
         </span>
 
+        
         <div className="navbar-nav">
+
+          <Link className="nav-link" to="../pages/Home.jsx">
+            Home
+          </Link>
+          
           <Link className="nav-link" to="./FormAvistamento.jsx">
             Avistamentos
           </Link>
