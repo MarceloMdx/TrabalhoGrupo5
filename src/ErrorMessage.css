@@ -1,0 +1,44 @@
+.error-container {
+  min-height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 30px;
+}
+
+.alien {
+  font-size: 100px;
+
+  animation: shake 2s infinite;
+}
+
+.error-container h2 {
+  color: #C5C764;
+
+  margin-top: 20px;
+}
+
+.error-container p {
+  color: white;
+
+  max-width: 500px;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(-5deg);
+  }
+}

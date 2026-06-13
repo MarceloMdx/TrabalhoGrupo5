@@ -5,26 +5,26 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark px-3">
       <div className="container-fluid">
         <span className="navbar-brand">
-          👽 Diário ET
+          👾 Diário ET
         </span>
 
         
         <div className="navbar-nav">
 
           <Link className="nav-link" to="../pages/Home.jsx">
-            Home
+            🏠 Home
           </Link>
           
           <Link className="nav-link" to="./FormAvistamento.jsx">
-            Avistamentos
+           👀 Avistamentos
           </Link>
 
           <Link className="nav-link" to="./FormAlien.jsx">
-            Aliens
+            👽 Aliens
           </Link>
 
           <Link className="nav-link" to="./FormPlaneta.jsx">
-            Planetas
+            🪐 Planetas
           </Link>
         </div>
       </div>
