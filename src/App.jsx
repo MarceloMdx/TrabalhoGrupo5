@@ -3,6 +3,7 @@ import Loading from "./components/Loading";
 import Navbar from "./components/Navbar";
 import ErrorMessage from "./components/ErrorMessage";
 
+
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -22,13 +23,9 @@ function App() {
 
       <div className="container-page">
         <h1>👽 Diário de Avistamentos ET</h1>
-
-      <ErrorMessage
-        titulo="🚨 Falha na transmissão"
-        mensagem="Não conseguimos obter os registros dos avistamentos."
-      />
       </div>
-    </>
+      <ErrorMessage />
+        </>
   );
 }
 
