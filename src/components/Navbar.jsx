@@ -1,31 +1,66 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 function Navbar() {
+  const { estaAutenticado, logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/login");
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark px-3">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
       <div className="container-fluid">
-        <span className="navbar-brand">
+        <Link className="navbar-brand" to="/">
           👾 Diário ET
-        </span>
+        </Link>
 
-        
-        <div className="navbar-nav">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-          <Link className="nav-link" to="../pages/Home.jsx">
-            🏠 Home
-          </Link>
-          
-          <Link className="nav-link" to="./FormAvistamento.jsx">
-           👀 Avistamentos
-          </Link>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <div className="navbar-nav ms-auto">
+            {estaAutenticado && (
+              <>
+                <Link className="nav-link" to="/">
+                  Home
+                </Link>
 
-          <Link className="nav-link" to="./FormAlien.jsx">
-            👽 Aliens
-          </Link>
+                <Link className="nav-link" to="/avistamentos">
+                  Avistamentos
+                </Link>
 
-          <Link className="nav-link" to="./FormPlaneta.jsx">
-            🪐 Planetas
-          </Link>
+                <Link className="nav-link" to="/aliens">
+                  Aliens
+                </Link>
+
+                <Link className="nav-link" to="/planetas">
+                  Planetas
+                </Link>
+
+                <button
+                  className="nav-link btn btn-link"
+                  onClick={handleLogout}
+                  style={{ cursor: "pointer" }}
+                >
+                  Sair
+                </button>
+              </>
+            )}
+            {!estaAutenticado && (
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </nav>
