@@ -1,9 +1,14 @@
-export default function FormAvistamento({ cadastrarAvistamento, fecharModal, formAvistamento, setFormAvistamento }) {
-
+export default function FormAvistamento({
+  cadastrarAvistamento,
+  fecharModal,
+  formAvistamento,
+  modoEdicao,
+  setFormAvistamento,
+}) {
   return (
     <form className="alien-form" onSubmit={cadastrarAvistamento}>
       <div className="modal-header">
-        <h2>Cadastrar Avistamento</h2>
+        <h2>{modoEdicao ? "Editar" : "Cadastrar"} Avistamento</h2>
         <button
           aria-label="Fechar modal"
           className="modal-close"
@@ -48,7 +53,10 @@ export default function FormAvistamento({ cadastrarAvistamento, fecharModal, for
           name="descricao"
           minLength="2"
           onChange={(event) =>
-            setFormAvistamento({ ...formAvistamento, descricao: event.target.value })
+            setFormAvistamento({
+              ...formAvistamento,
+              descricao: event.target.value,
+            })
           }
           required
           type="text"
@@ -59,12 +67,11 @@ export default function FormAvistamento({ cadastrarAvistamento, fecharModal, for
       <label>
         Data
         <input
-        
           name="data"
           onChange={(event) =>
             setFormAvistamento({
               ...formAvistamento,
-              data: (event.target.value),
+              data: event.target.value,
             })
           }
           required
@@ -74,10 +81,9 @@ export default function FormAvistamento({ cadastrarAvistamento, fecharModal, for
       </label>
 
       <label>
-        Nivel do medo 
+        Nivel do medo
         <input
           name="nivelMedo"
-          
           onChange={(event) =>
             setFormAvistamento({
               ...formAvistamento,
@@ -91,7 +97,7 @@ export default function FormAvistamento({ cadastrarAvistamento, fecharModal, for
       </label>
 
       <div className="form-actions">
-        <button type="submit">Cadastrar</button>
+        <button type="submit">{modoEdicao ? "Editar" : "Cadastrar"}</button>
         <button className="button-secondary" onClick={fecharModal} type="button">
           Cancelar
         </button>
