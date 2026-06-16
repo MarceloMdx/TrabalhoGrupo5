@@ -7,82 +7,82 @@ const TOKEN_KEY = "tokenAcesso";
 const USER_NAME_KEY = "nomeUsuario";
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState("");
-  const [nomeUsuario, setNomeUsuario] = useState("");
-  const [carregandoToken, setCarregandoToken] = useState(true);
+const [token, setToken] = useState("");
+const [nomeUsuario, setNomeUsuario] = useState("");
+const [carregandoToken, setCarregandoToken] = useState(true);
 
-  useEffect(() => {
-    function carregarToken() {
-      const tokenSalvo = localStorage.getItem(TOKEN_KEY);
-      const nomeSalvo = localStorage.getItem(USER_NAME_KEY);
+useEffect(() => {
+function carregarToken() {
+    const tokenSalvo = localStorage.getItem(TOKEN_KEY);
+    const nomeSalvo = localStorage.getItem(USER_NAME_KEY);
 
-      if (tokenSalvo) {
-        setToken(tokenSalvo);
-      }
-
-      if (nomeSalvo) {
-        setNomeUsuario(nomeSalvo);
-      }
-
-      setCarregandoToken(false);
+    if (tokenSalvo) {
+    setToken(tokenSalvo);
     }
 
-    carregarToken();
-  }, []);
-
-
-  async function login({ email, senha }) {
-    const resposta = await api.post("/login", { email, senha });
-
-    const tokenAcesso = resposta.data?.tokenAcesso;
-    const nome = resposta.data?.usuario?.nome || "";
-
-    if (!tokenAcesso) {
-      throw new Error("Token de acesso não retornado pela API.");
+    if (nomeSalvo) {
+    setNomeUsuario(nomeSalvo);
     }
 
-    localStorage.setItem(TOKEN_KEY, tokenAcesso);
+    setCarregandoToken(false);
+}
 
-    if (nome) {
-      localStorage.setItem(USER_NAME_KEY, nome);
-    } else {
-      localStorage.removeItem(USER_NAME_KEY);
-    }
+carregarToken();
+}, []);
 
-    setToken(tokenAcesso);
-    setNomeUsuario(nome);
 
-    return tokenAcesso;
-  }
+async function login({ email, senha }) {
+const resposta = await api.post("/login", { email, senha });
 
-  function logout() {
-    localStorage.removeItem(TOKEN_KEY);
+const tokenAcesso = resposta.data?.tokenAcesso;
+const nome = resposta.data?.usuario?.nome || "";
+
+if (!tokenAcesso) {
+    throw new Error("Token de acesso não retornado pela API.");
+}
+
+localStorage.setItem(TOKEN_KEY, tokenAcesso);
+
+if (nome) {
+    localStorage.setItem(USER_NAME_KEY, nome);
+} else {
     localStorage.removeItem(USER_NAME_KEY);
-    setToken("");
-    setNomeUsuario("");
-  }
+}
 
-  const value = useMemo(
-    () => ({
-      carregandoToken,
-      estaAutenticado: Boolean(token),
-      login,
-      logout,
-      nomeUsuario,
-      token,
-    }),
-    [carregandoToken, nomeUsuario, token]
-  );
+setToken(tokenAcesso);
+setNomeUsuario(nome);
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+return tokenAcesso;
+}
+
+function logout() {
+localStorage.removeItem(TOKEN_KEY);
+localStorage.removeItem(USER_NAME_KEY);
+setToken("");
+setNomeUsuario("");
+}
+
+const value = useMemo(
+() => ({
+    carregandoToken,
+    estaAutenticado: Boolean(token),
+    login,
+    logout,
+    nomeUsuario,
+    token,
+}),
+[carregandoToken, nomeUsuario, token]
+);
+
+return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
-  const context = useContext(AuthContext);
+const context = useContext(AuthContext);
 
-  if (!context) {
-    throw new Error("useAuth deve ser usado dentro de AuthProvider.");
-  }
+if (!context) {
+throw new Error("useAuth deve ser usado dentro de AuthProvider.");
+}
 
-  return context;
+return context;
 }
