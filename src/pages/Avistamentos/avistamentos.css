@@ -11,35 +11,104 @@
 --color-text: #F5F5F5;
 --color-text-secondary: #C7D1C0;
 }
+section {
+padding: 30px;
+background-color: #000000;
+min-height: 100vh;
+}
 
-.avistamentos {
+h1 {
+font-size: 3rem;
+margin-bottom: 10px;
+color: var(--color-text);
+}
+
+button {
+background: var(--color-secondary);
+color: white;
+border: none;
+border-radius: 10px;
+padding: 12px 24px;
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 30px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+button:hover {
+background: var(--color-primary);
+}
+
+p {
+color: var(--color-text-secondary);
+margin-bottom: 15px;
+}
+
+.avistamento-list {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 25px;
+margin-top: 20px;
+}
+
+.avistamento-card {
+background-color: #000000;
+border: 1px solid var(--color-secondary);
+border-radius: 18px;
+padding: 25px;
+min-height: 300px;
 display: flex;
 flex-direction: column;
+box-shadow: 0 0 15px rgba(128, 164, 22, 0.15);
+}
+
+.avistamento-card h2 {
+color: var(--color-secondary);
+font-size: 1.5rem;
+margin-bottom: 15px;
+margin-top: 0;
+}
+
+.avistamento-card p {
+font-size: 1rem;
+line-height: 1.6;
+color: var(--color-text);
+margin-bottom: 12px;
+}
+
+/* Modal */
+.modal-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.7);
+display: flex;
+justify-content: center;
 align-items: center;
-justify-content: flex-start;
-min-height: calc(100vh - 100px);
-padding: 2rem;
-gap: 2rem;
-background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 100%);
+z-index: 999;
 }
 
-.avistamentos h1 {
-color: var(--color-light);
-font-size: 3rem;
-text-shadow: 0 0 20px var(--color-secondary);
-text-align: center;
-margin: 0;
-animation: glow 2s ease-in-out infinite;
+.modal-content {
+background: var(--color-surface);
+border: 1px solid var(--color-secondary);
+border-radius: 18px;
+padding: 30px;
+width: 90%;
+max-width: 700px;
 }
 
-.avistamentos p {
-color: var(--color-text-secondary);
-font-size: 1.2rem;
-text-align: center;
-max-width: 600px;
-margin: 0;
+/* Responsivo */
+@media (max-width: 1200px) {
+.avistamento-list {
+grid-template-columns: repeat(2, 1fr);
+}
 }
 
+@media (max-width: 768px) {
+.avistamento-list {
+grid-template-columns: 1fr;
+}
+}
 .avistamentos-container {
 width: 100%;
 max-width: 1000px;
