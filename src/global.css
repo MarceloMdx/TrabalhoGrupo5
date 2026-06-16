@@ -127,7 +127,7 @@ select:focus {
 }
 
 .nav-link {
-  color: white !important;
+  color: rgb(221, 218, 218) !important;
 }
 
 .nav-link:hover {
