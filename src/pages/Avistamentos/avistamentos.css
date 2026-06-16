@@ -1,0 +1,123 @@
+:root {
+--color-primary-dark: #032820;
+--color-primary: #08652C;
+--color-secondary: #80A416;
+--color-accent: #AD9F3C;
+--color-light: #C5C764;
+--color-muted: #5E7343;
+
+--color-background: #0B1110;
+--color-surface: #13211D;
+--color-text: #F5F5F5;
+--color-text-secondary: #C7D1C0;
+}
+
+.avistamentos {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+min-height: calc(100vh - 100px);
+padding: 2rem;
+gap: 2rem;
+background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 100%);
+}
+
+.avistamentos h1 {
+color: var(--color-light);
+font-size: 3rem;
+text-shadow: 0 0 20px var(--color-secondary);
+text-align: center;
+margin: 0;
+animation: glow 2s ease-in-out infinite;
+}
+
+.avistamentos p {
+color: var(--color-text-secondary);
+font-size: 1.2rem;
+text-align: center;
+max-width: 600px;
+margin: 0;
+}
+
+.avistamentos-container {
+width: 100%;
+max-width: 1000px;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+gap: 2rem;
+margin-top: 2rem;
+}
+
+.avistamento-card {
+background: rgba(128, 164, 22, 0.1);
+border: 2px solid var(--color-secondary);
+border-radius: 12px;
+padding: 1.5rem;
+transition: all 0.3s ease;
+box-shadow: 0 0 20px rgba(128, 164, 22, 0.2);
+cursor: pointer;
+}
+
+.avistamento-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 0 40px var(--color-secondary), 0 0 60px rgba(128, 164, 22, 0.3);
+background: rgba(128, 164, 22, 0.15);
+}
+
+.avistamento-card h3 {
+color: var(--color-light);
+font-size: 1.3rem;
+margin: 0 0 1rem 0;
+}
+
+.avistamento-card p {
+color: var(--color-text-secondary);
+font-size: 0.95rem;
+margin: 0.5rem 0;
+}
+
+.avistamentos-empty {
+color: var(--color-text-secondary);
+font-size: 1.2rem;
+text-align: center;
+padding: 3rem;
+grid-column: 1 / -1;
+}
+
+@keyframes glow {
+0%, 100% {
+text-shadow: 0 0 20px var(--color-secondary);
+}
+50% {
+text-shadow: 0 0 30px var(--color-light), 0 0 40px var(--color-secondary);
+}
+}
+
+@media (max-width: 768px) {
+.avistamentos {
+min-height: auto;
+padding: 1rem;
+}
+
+.avistamentos h1 {
+font-size: 2rem;
+}
+
+.avistamentos p {
+font-size: 1rem;
+}
+
+.avistamentos-container {
+grid-template-columns: 1fr;
+gap: 1rem;
+}
+
+.avistamento-card {
+padding: 1rem;
+}
+
+.avistamento-card h3 {
+font-size: 1.1rem;
+}
+}
