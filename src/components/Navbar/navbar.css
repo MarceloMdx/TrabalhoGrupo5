@@ -1,0 +1,53 @@
+.navbar {
+  background-color: #2d3748;
+  border-bottom: 2px solid #667eea;
+  padding: 0.5rem 0;
+}
+
+.navbar-fixo {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background-color: #2d3748;
+  border-bottom: 2px solid #667eea;
+
+  backdrop-filter: blur(8px);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: white !important;
+}
+
+.navbar a.nav-link,
+.navbar button.nav-link {
+  color: #cbd5e0 !important;
+  transition: color 0.2s ease;
+}
+
+.navbar a.nav-link:hover,
+.navbar button.nav-link:hover {
+  color: white !important;
+}
+
+
+
+.navbar .btn-outline-light {
+  border-width: 1px;
+}
+
+.navbar .btn-outline-light:hover {
+  background-color: white;
+  color: #2d3748;
+}
+
+
+
+.card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}

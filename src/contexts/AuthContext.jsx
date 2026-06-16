@@ -1,50 +1,88 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import api from "../services/api";
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
+
+const TOKEN_KEY = "tokenAcesso";
+const USER_NAME_KEY = "nomeUsuario";
 
 export function AuthProvider({ children }) {
-  const [estaAutenticado, setEstaAutenticado] = useState(false);
-  const [nomeUsuario, setNomeUsuario] = useState("");
-  const [carregandoToken, setCarregandoToken] = useState(true);
+const [token, setToken] = useState("");
+const [nomeUsuario, setNomeUsuario] = useState("");
+const [carregandoToken, setCarregandoToken] = useState(true);
 
-  useEffect(() => {
-    const armazenado = localStorage.getItem("usuarioAutenticado");
-    const nome = localStorage.getItem("nomeUsuario");
+useEffect(() => {
+function carregarToken() {
+    const tokenSalvo = localStorage.getItem(TOKEN_KEY);
+    const nomeSalvo = localStorage.getItem(USER_NAME_KEY);
 
-    if (armazenado === "true") {
-      setEstaAutenticado(true);
-      setNomeUsuario(nome || "Visitante");
+    if (tokenSalvo) {
+    setToken(tokenSalvo);
     }
+
+    if (nomeSalvo) {
+    setNomeUsuario(nomeSalvo);
+    }
+
     setCarregandoToken(false);
-  }, []);
+}
 
-  async function login({ email, senha }) {
-    if (!email || !senha) {
-      throw new Error("Email e senha são obrigatórios.");
-    }
+carregarToken();
+}, []);
 
-    localStorage.setItem("usuarioAutenticado", "true");
-    localStorage.setItem("nomeUsuario", email.split("@")[0] || "Visitante");
-    setNomeUsuario(email.split("@")[0] || "Visitante");
-    setEstaAutenticado(true);
-  }
 
-  function logout() {
-    localStorage.removeItem("usuarioAutenticado");
-    localStorage.removeItem("nomeUsuario");
-    setEstaAutenticado(false);
-    setNomeUsuario("");
-  }
+async function login({ email, senha }) {
+const resposta = await api.post("/login", { email, senha });
 
-  return (
-    <AuthContext.Provider
-      value={{ estaAutenticado, nomeUsuario, carregandoToken, login, logout }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+const tokenAcesso = resposta.data?.tokenAcesso;
+const nome = resposta.data?.usuario?.nome || "";
+
+if (!tokenAcesso) {
+    throw new Error("Token de acesso não retornado pela API.");
+}
+
+localStorage.setItem(TOKEN_KEY, tokenAcesso);
+
+if (nome) {
+    localStorage.setItem(USER_NAME_KEY, nome);
+} else {
+    localStorage.removeItem(USER_NAME_KEY);
+}
+
+setToken(tokenAcesso);
+setNomeUsuario(nome);
+
+return tokenAcesso;
+}
+
+function logout() {
+localStorage.removeItem(TOKEN_KEY);
+localStorage.removeItem(USER_NAME_KEY);
+setToken("");
+setNomeUsuario("");
+}
+
+const value = useMemo(
+() => ({
+    carregandoToken,
+    estaAutenticado: Boolean(token),
+    login,
+    logout,
+    nomeUsuario,
+    token,
+}),
+[carregandoToken, nomeUsuario, token]
+);
+
+return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+const context = useContext(AuthContext);
+
+if (!context) {
+throw new Error("useAuth deve ser usado dentro de AuthProvider.");
+}
+
+return context;
 }
