@@ -16,8 +16,8 @@ body {
   margin: 0;
   padding: 0;
 
-  background-color: var(--background);
-  color: var(--text);
+  background-color: var(--color-background);
+  color: var(--color-text);
 
   font-family: "Segoe UI", sans-serif;
 }
@@ -28,19 +28,6 @@ a {
 
 .container-page {
   padding: 20px;
-}
-
-.navbar {
-  background-color: var(--color-primary-dark);
-  border-bottom: 2px solid var(--color-secondary);
-}
-
-.navbar a {
-  color: var(--color-light);
-}
-
-.navbar a:hover {
-  color: white;
 }
 
 .card{
@@ -116,13 +103,15 @@ select:focus {
   text-shadow: 0 0 10px var(--color-secondary);
 }
 
+/* Navbar */
+
 .navbar {
-  background-color: var(--primary-dark);
-  border-bottom: 2px solid var(--secondary);
+  background-color: var(--color-primary-dark);
+  border-bottom: 2px solid var(--color-secondary);
 }
 
 .navbar-brand {
-  color: var(--light-green) !important;
+  color: var(--color-light) !important;
   font-weight: bold;
 }
 
@@ -131,5 +120,16 @@ select:focus {
 }
 
 .nav-link:hover {
-  color: var(--light-green) !important;
+  color: var(--color-light) !important;
+}
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  font-family: "Segoe UI", sans-serif;
+
+  min-height: 100vh;
 }
