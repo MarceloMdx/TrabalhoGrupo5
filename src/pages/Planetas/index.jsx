@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import FormPlaneta from "../../components/Planetas/index";
 import { useAuth } from "../../contexts/AuthContext";
 import api from "../../services/api";
-import "../../planeta.css";
+import "./planetas.css";
 
 const url = "/planetas";
 

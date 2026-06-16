@@ -132,7 +132,7 @@ export default function Aliens() {
 
   
   return (
-    <section>
+    <section className="aliens-page">
       <h1>Aliens</h1>
       {nomeUsuario && <p className="usuario-logado">Olá, {nomeUsuario}</p>}
 
