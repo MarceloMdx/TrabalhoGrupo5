@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import FormAvistamento from "../../components/Avistamentos/index";
+import "./avistamentos.css";
 
 function Avistamentos() {
     const [avistamentos, setAvistamentos] = useState([]);
