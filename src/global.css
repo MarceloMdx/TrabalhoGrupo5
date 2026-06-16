@@ -30,7 +30,7 @@ a {
   padding: 20px;
 }
 
-.card {
+.card{
   background-color: var(--color-surface);
   border: 1px solid var(--color-muted);
   border-radius: 12px;

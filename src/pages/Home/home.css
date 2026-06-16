@@ -1,0 +1,71 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px);
+  padding: 2rem;
+  gap: 2rem;
+  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 100%);
+}
+
+.home h1 {
+  color: var(--color-light);
+  font-size: 3rem;
+  text-shadow: 0 0 20px var(--color-secondary);
+  text-align: center;
+  margin: 0;
+  animation: glow 2s ease-in-out infinite;
+}
+
+.home p {
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 500px;
+  margin: 0;
+}
+
+.home-ufo-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 30px var(--color-secondary), 0 0 50px rgba(128, 164, 22, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  object-fit: cover;
+}
+
+.home-ufo-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px var(--color-light), 0 0 60px rgba(197, 199, 100, 0.4);
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 20px var(--color-secondary);
+  }
+  50% {
+    text-shadow: 0 0 30px var(--color-light), 0 0 40px var(--color-secondary);
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    min-height: auto;
+    padding: 1rem;
+  }
+
+  .home h1 {
+    font-size: 2rem;
+  }
+
+  .home p {
+    font-size: 1rem;
+  }
+
+  .home-ufo-image {
+    max-width: 100%;
+  }
+}
