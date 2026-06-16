@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FormAlien from "../../components/Aliens/index";
 import { useAuth } from "../../contexts/AuthContext";
 import api from "../../services/api";
+import "./aliens.css";
 
 const url = "/aliens";
 
